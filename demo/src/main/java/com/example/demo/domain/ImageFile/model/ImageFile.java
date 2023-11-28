@@ -1,4 +1,4 @@
-package com.example.demo.domain.ImageFile;
+package com.example.demo.domain.ImageFile.model;
 
 import lombok.Getter;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,7 +1,7 @@
 package com.example.demo.dto;
 
 import com.example.demo.db.entity.ImageFileEntity;
-import com.example.demo.domain.ImageFile.ImageFile;
+import com.example.demo.domain.ImageFile.model.ImageFile;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

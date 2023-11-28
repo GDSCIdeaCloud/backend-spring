@@ -1,6 +1,6 @@
 package com.example.demo.db.entity;
 
-import com.example.demo.domain.ImageFile.ImageFile;
+import com.example.demo.domain.ImageFile.model.ImageFile;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

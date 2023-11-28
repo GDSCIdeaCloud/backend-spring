@@ -3,7 +3,7 @@ package com.example.demo.service;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.example.demo.domain.ImageFile.ImageFile;
+import com.example.demo.domain.ImageFile.model.ImageFile;
 import com.example.demo.domain.ImageFile.ImageFileHandle;
 import com.example.demo.domain.s3.S3Image;
 import com.example.demo.domain.ImageFile.util.ImageFileNameUtil;

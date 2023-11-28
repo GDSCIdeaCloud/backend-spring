@@ -1,5 +1,5 @@
 package com.example.demo.domain.s3;
-import com.example.demo.domain.ImageFile.ImageFile;
+import com.example.demo.domain.ImageFile.model.ImageFile;
 import lombok.Getter;
 import org.springframework.web.multipart.MultipartFile;
 
