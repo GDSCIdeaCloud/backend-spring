@@ -9,20 +9,30 @@ public class Game {
 
     private String title;
 
-    private String choice1_img_url;
-    private String choice2_img_url;
+    private String choice1ImgUrl;
+    private String choice2ImgUrl;
 
-    private String choice1_name;
-    private String choice2_name;
+    private String choice1Name;
+    private String choice2Name;
 
-    public Game(Long gameId, Long memberId, String title, String choice1_img_url, String choice2_img_url,
-                String choice1_name, String choice2_name) {
+    public Game(Long gameId, Long memberId, String title, String choice1ImgUrl, String choice2ImgUrl,
+                String choice1Name, String choice2Name) {
         this.gameId = gameId;
         this.memberId = memberId;
         this.title = title;
-        this.choice1_img_url = choice1_img_url;
-        this.choice2_img_url = choice2_img_url;
-        this.choice1_name = choice1_name;
-        this.choice2_name = choice2_name;
+        this.choice1ImgUrl = choice1ImgUrl;
+        this.choice2ImgUrl = choice2ImgUrl;
+        this.choice1Name = choice1Name;
+        this.choice2Name = choice2Name;
+    }
+    public Game(Long memberId, String title, String choice1ImgUrl, String choice2ImgUrl,
+                String choice1Name, String choice2Name) {
+        this.gameId = null;
+        this.memberId = memberId;
+        this.title = title;
+        this.choice1ImgUrl = choice1ImgUrl;
+        this.choice2ImgUrl = choice2ImgUrl;
+        this.choice1Name = choice1Name;
+        this.choice2Name = choice2Name;
     }
 }

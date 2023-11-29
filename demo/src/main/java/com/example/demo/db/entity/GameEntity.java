@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-@Entity(name = "gmae")
+@Entity(name = "game")
 public class GameEntity {
     @Id
     @Column(name = "gameId")
@@ -27,28 +27,36 @@ public class GameEntity {
     @JoinColumn(name = "memberId")
     private MemberEntity memberEntity;
 
+    @Column(name = "title")
     private String title;
 
-    private String choice1_img_url;
-    private String choice2_img_url;
+    @Column(name = "choice1ImgUrl")
+    private String choice1ImgUrl;
 
-    private String choice1_name;
-    private String choice2_name;
+    @Column(name = "choice2ImgUrl")
+    private String choice2ImgUrl;
 
-    private GameEntity(MemberEntity memberEntity, String title, String choice1_img_url, String choice2_img_url,
-                       String choice1_name, String choice2_name) {
+    @Column(name = "choice1Name")
+    private String choice1Name;
+
+    @Column(name = "choice2Name")
+    private String choice2Name;
+
+    private GameEntity(MemberEntity memberEntity, String title, String choice1ImgUrl, String choice2ImgUrl,
+                       String choice1Name, String choice2Name) {
         this.memberEntity = memberEntity;
         this.title = title;
-        this.choice1_img_url = choice1_img_url;
-        this.choice2_img_url = choice2_img_url;
-        this.choice1_name = choice1_name;
-        this.choice2_name = choice2_name;
+        this.choice1ImgUrl = choice1ImgUrl;
+        this.choice2ImgUrl = choice2ImgUrl;
+        this.choice1Name = choice1Name;
+        this.choice2Name = choice2Name;
     }
 
     public GameEntity(MemberEntity memberEntity, Game game) {
-        this(memberEntity,game.getTitle(),game.getChoice1_img_url(),game.getChoice2_img_url(),game.getChoice1_name(),game.getChoice2_name());
+        this(memberEntity, game.getTitle(), game.getChoice1ImgUrl(), game.getChoice2ImgUrl(), game.getChoice1Name(), game.getChoice2Name());
     }
-    public Game toGame(){
-        return new Game(gameId,memberEntity.getMemberId(),title,choice1_img_url,choice2_img_url,choice1_name,choice2_name);
+
+    public Game toGame() {
+        return new Game(gameId, memberEntity.getMemberId(), title, choice1ImgUrl, choice2ImgUrl, choice1Name, choice2Name);
     }
 }
