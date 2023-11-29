@@ -7,5 +7,5 @@ import java.util.List;
 public interface MemberRepository {
     MemberEntity save(MemberEntity member);
     List<MemberEntity> findAll();
-
+    MemberEntity findByMemberId(Long memberId);
 }
