@@ -1,13 +1,16 @@
 package com.example.demo.db.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
+
+
 
 @Getter
 @Setter
-@Data
 @Entity(name = "member")
 public class MemberEntity {
     @Id
@@ -22,6 +25,9 @@ public class MemberEntity {
     String imageUrl;
     @Column(name = "password")
     String password;
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    LocalDateTime created_at;
 
     public MemberEntity(String nickName,String email,String imageUrl,String password){
         this.nickName = nickName;
