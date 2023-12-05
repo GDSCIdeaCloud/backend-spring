@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -17,9 +19,15 @@ public class IdeaService {
     private final IdeaRepository ideaRepository;
     private final MemberRepository memberRepository;
 
+    // 아이디어 저장
     public IdeaEntity save(Long memberId, AddIdeaRequest request) {
         MemberEntity memberEntity = memberRepository.findByMemberId(memberId);
 
         return ideaRepository.save(request.toEntity(memberEntity));
+    }
+
+    // 아이디어 목록 조회
+    public List<IdeaEntity> findAll() {
+        return ideaRepository.findAll();
     }
 }
