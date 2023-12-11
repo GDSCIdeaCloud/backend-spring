@@ -1,8 +1,6 @@
 package com.example.demo.controllers;
 
 import com.example.demo.db.entity.IdeaEntity;
-import com.example.demo.dto.AddIdeaRequest;
-import com.example.demo.dto.IdeaResponse;
 import com.example.demo.service.IdeaService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
