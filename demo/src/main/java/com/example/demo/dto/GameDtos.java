@@ -28,19 +28,20 @@ public class GameDtos {
     }
     @Getter
     public static class PostGameRequestDto {
-        private String title;
+        private  Long memberId;
+        private  String title;
         private  String choiceAImgUrl;
         private  String choiceBImgUrl;
         private  String choiceAName;
         private  String choiceBName;
-        public Game toGame(Long memberId) {
+        public Game toGame() {
             return Game.ForRegisterGame()
-                    .title(title)
-                    .memberId(memberId)
-                    .choiceAImgUrl(choiceAImgUrl)
-                    .choiceBImgUrl(choiceBImgUrl)
-                    .choiceAName(choiceAName)
-                    .choiceBName(choiceBName)
+                    .title(this.title)
+                    .memberId(this.memberId)
+                    .choiceAImgUrl(this.choiceAImgUrl)
+                    .choiceBImgUrl(this.choiceBImgUrl)
+                    .choiceAName(this.choiceAName)
+                    .choiceBName(this.choiceBName)
                     .build();
         }
     }
@@ -54,6 +55,7 @@ public class GameDtos {
     }
     @Getter
     public static class JoinGameRequestDto {
+        private Long memberId;
         private  Long gameId;
         private  String choice;
     }
