@@ -9,6 +9,7 @@ public class IdeaDtos {
 
     @Getter
     public static class AddIdeaRequest {
+        private Long memberId;
         private String title;
         private String content;
 

@@ -21,7 +21,7 @@ public class IdeaApiController {
     @PostMapping("/api/ideas")
     public ResponseEntity<IdeaEntity> addIdea(@RequestBody AddIdeaRequest request) {
 
-        IdeaEntity savedIdea = ideaService.save(memberId, request);
+        IdeaEntity savedIdea = ideaService.save(request);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(savedIdea);
