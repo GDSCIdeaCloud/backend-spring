@@ -25,31 +25,26 @@ public class GameApiController {
     private final GameService gameService;
     @Operation(operationId = "View Single Game", summary = "게임 단일 조회", description = "참여할 게임을 조회함", tags = "GameController")
     @GetMapping(value = "", produces = "application/json;charset=UTF-8")
-    public ResponseEntity<ApiResponseDto<SingleGameViewDto>> getSingleGame(
-            @RequestHeader("Authorization") Long memberId, @RequestParam("gameId") Long gameId) {
-        return ResponseEntity.ok(
-                ApiResponseDto.success(
-                        HttpStatus.OK,
-                        new SingleGameViewDto(gameService.findGameByGameId(gameId))));
+    public ResponseEntity<ApiResponseDto<SingleGameViewDto>> getSingleGame(@RequestParam("gameId") Long gameId) {
+        return ResponseEntity.ok(ApiResponseDto.success(HttpStatus.OK, new SingleGameViewDto(gameService.findGameByGameId(gameId))));
     }
     @Operation(operationId = "register", summary = "게임 등록", description = "요청을 검증한 뒤 게임을 등록함", tags = "GameController")
     @PostMapping(value = "", produces = "application/json;charset=UTF-8")
-    public ResponseEntity<ApiResponseDto<SingleGameViewDto>> postGame(@RequestHeader("Authorization") Long memberId,
-                                                                      @Valid @RequestBody PostGameRequestDto requestDto) {
+    public ResponseEntity<ApiResponseDto<SingleGameViewDto>> postGame(@Valid @RequestBody PostGameRequestDto requestDto) {
         return ResponseEntity.ok(
                 ApiResponseDto.success(
                         HttpStatus.CREATED,
-                        new SingleGameViewDto(gameService.save(memberId, requestDto.toGame(memberId)))));
+                        new SingleGameViewDto(gameService.save(requestDto.toGame()))));
     }
     @Operation(operationId = "join", summary = "게임 참여", description = "요청을 검토한뒤 게임에 참여함", tags = "GameController")
     @PostMapping(value = "/join", produces = "application/json;charset=UTF-8")
-    public ResponseEntity<ApiResponseDto<JoinGameViewDto>> joinGame(@RequestHeader("Authorization") Long memberId,
-                                                                    @Valid @RequestBody JoinGameRequestDto requestDto) {
+    public ResponseEntity<ApiResponseDto<JoinGameViewDto>> joinGame(
+            @Valid @RequestBody JoinGameRequestDto requestDto) {
         return ResponseEntity.ok(
                 ApiResponseDto.success(
                         HttpStatus.OK,
                         new JoinGameViewDto(
-                                gameService.joinGame(memberId, requestDto.getGameId(), requestDto.getChoice()))));
+                                gameService.joinGame(requestDto.getMemberId(), requestDto.getGameId(), requestDto.getChoice()))));
     }
     @Operation(operationId = "total", summary = "게임 목록 조회", description = "게임들을 조회함", tags = "GameController")
     @GetMapping(value = "/total", produces = "application/json;charset=UTF-8")

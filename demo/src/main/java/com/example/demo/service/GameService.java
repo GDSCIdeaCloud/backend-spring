@@ -20,8 +20,8 @@ public class GameService {
     private final GameRepository gameRepository;
     private final GameChoiceResultRepository gameChoiceResultRepository;
     private final MemberRepository memberRepository;
-    public Game save(Long memberId, Game game) {
-        MemberEntity memberEntity = memberRepository.findByMemberId(memberId);
+    public Game save(Game game) {
+        MemberEntity memberEntity = memberRepository.findByMemberId(game.getMemberId());
         var registerGame = GameEntity.forRegisterGame().memberEntity(memberEntity).game(game).build();
         return gameRepository.save(registerGame).toGame();
     }
@@ -41,7 +41,7 @@ public class GameService {
         return findGameEntityByGameId(gameId).toGame();
     }
     @Transactional(readOnly = true)
-    public GameEntity findGameEntityByGameId(Long gameId){
+    public GameEntity findGameEntityByGameId(Long gameId) {
         return  gameRepository.findByGameId(gameId).orElseThrow(()->new IllegalStateException("[ERROR]"));
     }
     @Transactional(readOnly = true)
