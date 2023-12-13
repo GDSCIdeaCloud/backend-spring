@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.db.entity.IdeaEntity;
+import com.example.demo.dto.IdeaDtos.*;
 import com.example.demo.service.IdeaService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class IdeaApiController {
 
     @Operation(operationId = "Idea Create", summary = "아이디어 등록", description = "아이디어 글 하나를 등록함", tags = "IdeaController")
     @PostMapping("/api/ideas")
-    public ResponseEntity<IdeaEntity> addIdea(@RequestHeader("Authorization") Long memberId, @RequestBody AddIdeaRequest request) {
+    public ResponseEntity<IdeaEntity> addIdea(@RequestBody AddIdeaRequest request) {
 
         IdeaEntity savedIdea = ideaService.save(memberId, request);
 
