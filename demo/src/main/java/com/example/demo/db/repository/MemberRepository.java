@@ -14,4 +14,7 @@ public interface MemberRepository {
 
     MemberEntity findByEmail(String email);
 
+    Optional<MemberEntity> findById(Long id);
+
+
 }
