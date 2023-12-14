@@ -63,6 +63,4 @@ public class MemberController {
         }
     }
 
-    //:TODO DTO 어떻게하지?
-
 }
