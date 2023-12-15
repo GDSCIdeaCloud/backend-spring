@@ -2,6 +2,7 @@ package com.example.demo.db.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -46,4 +47,11 @@ public class CommentEntity {
     @Column(name = "updatedAt")
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    @Builder
+    public CommentEntity(IdeaEntity ideaEntity, MemberEntity memberEntity, String content) {
+        this.ideaEntity = ideaEntity;
+        this.memberEntity = memberEntity;
+        this.content = content;
+    }
 }

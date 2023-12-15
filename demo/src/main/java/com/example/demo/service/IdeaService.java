@@ -4,7 +4,7 @@ import com.example.demo.db.entity.IdeaEntity;
 import com.example.demo.db.entity.MemberEntity;
 import com.example.demo.db.repository.IdeaRepository;
 import com.example.demo.db.repository.MemberRepository;
-import com.example.demo.dto.IdeaDtos;
+import com.example.demo.dto.IdeaDtos.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ public class IdeaService {
     private final IdeaRepository ideaRepository;
     private final MemberRepository memberRepository;
 
-    public IdeaEntity save(Long memberId, IdeaDtos.AddIdeaRequest request) {
+    public IdeaEntity save(AddIdeaRequest request) {
         MemberEntity memberEntity = memberRepository.findByMemberId(request.getMemberId());
 
         return ideaRepository.save(request.toEntity(memberEntity));
@@ -43,7 +43,7 @@ public class IdeaService {
         ideaRepository.deleteById(id);
     }
 
-    public IdeaEntity update(Long id, IdeaDtos.UpdateIdeaRequest request) {
+    public IdeaEntity update(Long id, UpdateIdeaRequest request) {
         IdeaEntity idea = ideaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
 
