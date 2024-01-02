@@ -19,7 +19,7 @@ public class IdeaService {
     private final IdeaRepository ideaRepository;
     private final MemberRepository memberRepository;
 
-    public IdeaEntity save(Long memberId, IdeaDtos.AddIdeaRequest request) {
+    public IdeaEntity save(IdeaDtos.AddIdeaRequest request) {
         MemberEntity memberEntity = memberRepository.findByMemberId(request.getMemberId());
 
         return ideaRepository.save(request.toEntity(memberEntity));
