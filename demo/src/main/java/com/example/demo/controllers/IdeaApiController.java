@@ -47,4 +47,13 @@ public class IdeaApiController {
         return ResponseEntity.ok()
                 .body(updateIdea);
     }
+
+    @Operation(operationId = "Idea Delete", summary = "아이디어 삭제", description = "아이디어를 삭제함", tags = "IdeaController")
+    @DeleteMapping("/api/ideas/{id}")
+    public ResponseEntity<Void> deleteIdea(@PathVariable Long id) {
+        ideaService.delete(id);
+
+        return ResponseEntity.ok()
+                .build();
+    }
 }
