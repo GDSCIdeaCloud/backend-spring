@@ -38,4 +38,13 @@ public class IdeaApiController {
         return ResponseEntity.ok()
                 .body(ideas);
     }
+
+    @Operation(operationId = "Idea Update", summary = "아이디어 수정", description = "아이디어 글 제목 또는 내용을 수정함", tags = "IdeaController")
+    @PutMapping("/api/ideas/{id}")
+    public ResponseEntity<IdeaEntity> updateIdea(@PathVariable Long id, @RequestBody UpdateIdeaRequest request) {
+        IdeaEntity updateIdea = ideaService.update(id, request);
+
+        return ResponseEntity.ok()
+                .body(updateIdea);
+    }
 }
