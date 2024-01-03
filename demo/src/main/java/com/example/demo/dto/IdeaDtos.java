@@ -2,8 +2,10 @@ package com.example.demo.dto;
 
 import com.example.demo.db.entity.IdeaEntity;
 import com.example.demo.db.entity.MemberEntity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 public class IdeaDtos {
 
@@ -39,4 +41,12 @@ public class IdeaDtos {
             this.content = idea.getContent();
         }
     }
+
+    @AllArgsConstructor
+    @Getter
+    public static class IdeaDetailResponse {
+        private final String title;
+        private final String content;
+    }
+
 }

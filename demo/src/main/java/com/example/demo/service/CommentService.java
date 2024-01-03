@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -26,5 +28,9 @@ public class CommentService {
                 .orElseThrow(() -> new IllegalArgumentException("not found : " + request.getIdeaId()));
 
         return commentRepository.save(request.toEntity(memberEntity, ideaEntity));
+    }
+
+    public List<CommentEntity> findAll() {
+        return commentRepository.findAll();
     }
 }
