@@ -30,6 +30,16 @@ public class CommentService {
         return commentRepository.save(request.toEntity(memberEntity, ideaEntity));
     }
 
+    public CommentEntity save(AddReCommentRequest request) {
+        MemberEntity memberEntity = memberRepository.findByMemberId(request.getMemberId());
+        IdeaEntity ideaEntity = ideaRepository.findById(request.getIdeaId())
+                .orElseThrow(() -> new IllegalArgumentException("not found : " + request.getIdeaId()));
+        CommentEntity parent = commentRepository.findById(request.getParentId())
+                .orElseThrow(() -> new IllegalArgumentException("not found : " + request.getParentId()));
+
+        return commentRepository.save(request.toEntity(memberEntity, ideaEntity, parent));
+    }
+
     public List<CommentEntity> findAll() {
         return commentRepository.findAll();
     }

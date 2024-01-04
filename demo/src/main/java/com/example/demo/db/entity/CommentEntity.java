@@ -49,9 +49,10 @@ public class CommentEntity {
     private LocalDateTime updatedAt;
 
     @Builder
-    public CommentEntity(IdeaEntity ideaEntity, MemberEntity memberEntity, String content) {
+    public CommentEntity(IdeaEntity ideaEntity, MemberEntity memberEntity, CommentEntity parent, String content) {
         this.ideaEntity = ideaEntity;
         this.memberEntity = memberEntity;
+        this.parent = parent;
         this.content = content;
     }
 }

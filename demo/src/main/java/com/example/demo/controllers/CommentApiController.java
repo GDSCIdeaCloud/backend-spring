@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.api.ApiResponseDto;
 import com.example.demo.db.entity.CommentEntity;
 import com.example.demo.dto.CommentDtos.*;
 import com.example.demo.service.CommentService;
@@ -7,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,5 +27,20 @@ public class CommentApiController {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(savedComment);
+    }
+
+    @Operation(operationId = "ReComment Create", summary = "대댓글 등록", description = "아이디어 댓글에 대댓글을 작성함", tags = "CommentController")
+    @PostMapping("/api/comment/{id}")
+    public ResponseEntity<ApiResponseDto<ReCommentDTO>> addReComment(@PathVariable Long id, @RequestBody AddReCommentRequest request) {
+
+        request.setParentId(id);
+        CommentEntity savedReComment = commentService.save(request);
+
+        return ResponseEntity.ok(
+                ApiResponseDto.success(
+                        HttpStatus.CREATED,
+                        new ReCommentDTO(savedReComment)
+                )
+        );
     }
 }
